@@ -47,7 +47,7 @@ open class OAuth2Swift: OAuthSwift {
         self.responseType = responseType
         self.customKeypath = customKeypath
         self.customAccessTokenParams = customAccessTokenParams
-        super.init(consumerKey: consumerKey, consumerSecret: consumerSecret)
+        super.init(consumerKey: consumerKey, consumerSecret: consumerSecret,nonce: OAuthSwiftCredential.generateNonce())
         self.client.credential.version = .oauth2
     }
 
@@ -367,7 +367,7 @@ open class OAuth2Swift: OAuthSwift {
         var pkceParameters = Parameters()
         pkceParameters["code_challenge"] = codeChallenge
         pkceParameters["code_challenge_method"] = codeChallengeMethod
-
+        pkceParameters["nonce"] = self.client.credential.nonce
         return authorize(withCallbackURL: callbackURL, scope: scope, state: state, parameters: parameters + pkceParameters, headers: headers, completionHandler: completion)
     }
 }

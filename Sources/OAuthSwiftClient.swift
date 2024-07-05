@@ -31,14 +31,14 @@ open class OAuthSwiftClient: NSObject {
         self.credential = credential
     }
 
-    public convenience init(consumerKey: String, consumerSecret: String, version: OAuthSwiftCredential.Version = .oauth1) {
-        let credential = OAuthSwiftCredential(consumerKey: consumerKey, consumerSecret: consumerSecret)
+    public convenience init(consumerKey: String, consumerSecret: String,nonce: String, version: OAuthSwiftCredential.Version = .oauth1) {
+        let credential = OAuthSwiftCredential(consumerKey: consumerKey, consumerSecret: consumerSecret, nonce: nonce)
         credential.version = version
         self.init(credential: credential)
     }
 
-    public convenience init(consumerKey: String, consumerSecret: String, oauthToken: String, oauthTokenSecret: String, version: OAuthSwiftCredential.Version) {
-        self.init(consumerKey: consumerKey, consumerSecret: consumerSecret, version: version)
+    public convenience init(consumerKey: String, consumerSecret: String,nonce: String, oauthToken: String, oauthTokenSecret: String, version: OAuthSwiftCredential.Version) {
+        self.init(consumerKey: consumerKey, consumerSecret: consumerSecret, nonce: nonce, version: version)
         self.credential.oauthToken = oauthToken
         self.credential.oauthTokenSecret = oauthTokenSecret
     }

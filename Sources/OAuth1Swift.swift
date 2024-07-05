@@ -42,13 +42,13 @@ open class OAuth1Swift: OAuthSwift {
         self.requestTokenUrl = requestTokenUrl.string
         self.authorizeUrl = authorizeUrl.string
         self.accessTokenUrl = accessTokenUrl.string
-        super.init(consumerKey: consumerKey, consumerSecret: consumerSecret)
+        super.init(consumerKey: consumerKey, consumerSecret: consumerSecret, nonce: OAuthSwiftCredential.generateNonce())
         self.client.credential.version = .oauth1
     }
 
-    public convenience override init(consumerKey: String, consumerSecret: String) {
-        self.init(consumerKey: consumerKey, consumerSecret: consumerSecret, requestTokenUrl: "", authorizeUrl: "", accessTokenUrl: "")
-    }
+//    public convenience override init(consumerKey: String, consumerSecret: String, nonce: String) {
+//        self.init(consumerKey: consumerKey, consumerSecret: consumerSecret, requestTokenUrl: "", authorizeUrl: "", accessTokenUrl: "")
+//    }
 
     public convenience init?(parameters: ConfigParameters) {
         guard let consumerKey = parameters["consumerKey"], let consumerSecret = parameters["consumerSecret"],

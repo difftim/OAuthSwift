@@ -5,6 +5,6 @@ target 'OAuthSwiftTests' do
 
     pod 'Swifter', :git => 'https://github.com/httpswift/swifter.git'
     pod 'Erik', :git => 'https://github.com/phimage/Erik.git'
-    pod 'Kanna', :git => 'https://github.com/tid-kijyun/Kanna.git'
+    pod 'Kanna'
 
 end
