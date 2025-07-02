@@ -126,6 +126,15 @@ open class OAuth2Swift: OAuthSwift {
             if let fragment = url.fragment, !fragment.isEmpty {
                 responseParameters += fragment.parametersFromQueryString
             }
+            if responseParameters.isEmpty,
+               let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+               let queryItems = components.queryItems {
+                queryItems.forEach {
+                    if let value = $0.value {
+                        responseParameters += [$0.name: value]
+                    }
+                }
+            }
             OAuthSwift.log?.trace("Parsed url parameters: \(responseParameters)")
 
             if let accessToken = responseParameters["access_token"] {
